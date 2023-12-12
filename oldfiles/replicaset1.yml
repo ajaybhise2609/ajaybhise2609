@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: myrsetngpod
+spec: 
+  replicas: 3
+  selector:
+    matchExpressions:   
+     - key: app
+       operator: In
+       values:
+         - dev
+  template:
+    metadata:
+      labels:
+        app: dev
+    spec:
+      containers:
+       - image: nginx 
+         name: ngcont
+         ports: 
+          - containerPort: 80
